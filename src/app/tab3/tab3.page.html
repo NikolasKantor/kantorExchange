@@ -1,9 +1,58 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Three
+      Default options
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-list>
+    <ion-list-header>Default currencies</ion-list-header>
+    <ion-item>
+      <ion-label>Input currency</ion-label>
+      <ion-select placeholder="USD">
+        <ion-select-option value="USD">United Stated Dollar</ion-select-option>
+        <ion-select-option value="EUR">Euro</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label>Desired currency</ion-label>
+        <ion-select placeholder="EUR">
+          <ion-select-option value="USD">United Stated Dollar</ion-select-option>
+          <ion-select-option value="EUR">Euro</ion-select-option>
+        </ion-select>
+      </ion-item>
+  </ion-list>
+  <ion-list>
+      <ion-radio-group>
+          <ion-list-header>
+            <ion-label>Currency display mode</ion-label>
+          </ion-list-header> 
+          <ion-item>
+            <ion-label>Code (i.g. CZK)</ion-label>
+            <ion-radio slot="start" value="code" checked></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Full Name (i.g. Czech koruna)</ion-label>
+            <ion-radio slot="start" value="fullName"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>Displayed rates</ion-list-header>
+    <ion-item>
+      <ion-label>Bid rate</ion-label>
+      <ion-toggle></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mid rate</ion-label>
+      <ion-toggle></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Ask rate</ion-label>
+      <ion-toggle></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
