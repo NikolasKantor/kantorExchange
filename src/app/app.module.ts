@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ExchangeService } from './exchange-api/exchange.service';
+import { StorageService } from './storage/storage.service';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +26,9 @@ import { ExchangeService } from './exchange-api/exchange.service';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    ExchangeService
+    ExchangeService,
+    StorageService,
+    NativeStorage
   ],
   bootstrap: [AppComponent]
 })

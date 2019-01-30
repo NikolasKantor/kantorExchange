@@ -11,31 +11,33 @@
     <ion-list-header>Default currencies</ion-list-header>
     <ion-item>
       <ion-label>Input currency</ion-label>
-      <ion-select placeholder="USD">
-        <ion-select-option value="USD">United Stated Dollar</ion-select-option>
+      <ion-select [(ngModel)]="inputCurrency" (ngModelChange)="onOptionsChange()">
         <ion-select-option value="EUR">Euro</ion-select-option>
+        <ion-select-option value="USD">Americal Dollar</ion-select-option>
+        <ion-select-option value="CZK">Czech Koruna</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
-        <ion-label>Desired currency</ion-label>
-        <ion-select placeholder="EUR">
-          <ion-select-option value="USD">United Stated Dollar</ion-select-option>
-          <ion-select-option value="EUR">Euro</ion-select-option>
-        </ion-select>
+      <ion-label>Desired currency</ion-label>
+      <ion-select [(ngModel)]="outputCurrency" (ngModelChange)="onOptionsChange()">
+        <ion-select-option value="EUR">Euro</ion-select-option>
+        <ion-select-option value="USD">Americal Dollar</ion-select-option>
+        <ion-select-option value="CZK">Czech Koruna</ion-select-option>
+      </ion-select>
       </ion-item>
   </ion-list>
   <ion-list>
-      <ion-radio-group>
+      <ion-radio-group [(ngModel)]="currencyDiplayMode" (ngModelChange)="onOptionsChange()">
           <ion-list-header>
             <ion-label>Currency display mode</ion-label>
           </ion-list-header> 
           <ion-item>
             <ion-label>Code (i.g. CZK)</ion-label>
-            <ion-radio slot="start" value="code" checked></ion-radio>
+            <ion-radio value="code"></ion-radio>
           </ion-item>
           <ion-item>
             <ion-label>Full Name (i.g. Czech koruna)</ion-label>
-            <ion-radio slot="start" value="fullName"></ion-radio>
+            <ion-radio value="fullName"></ion-radio>
           </ion-item>
         </ion-radio-group>
   </ion-list>
@@ -43,16 +45,15 @@
     <ion-list-header>Displayed rates</ion-list-header>
     <ion-item>
       <ion-label>Bid rate</ion-label>
-      <ion-toggle></ion-toggle>
+      <ion-toggle [(ngModel)]="bidRate" (ngModelChange)="onOptionsChange()"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Mid rate</ion-label>
-      <ion-toggle></ion-toggle>
+      <ion-toggle [(ngModel)]="midRate" (ngModelChange)="onOptionsChange()"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Ask rate</ion-label>
-      <ion-toggle></ion-toggle>
+      <ion-toggle [(ngModel)]="askRate" (ngModelChange)="onOptionsChange()"></ion-toggle>
     </ion-item>
   </ion-list>
-
 </ion-content>

@@ -1,5 +1,7 @@
 {
   "name": "kantorExchange",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
