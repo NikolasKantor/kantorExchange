@@ -1,21 +1,21 @@
 import { Country } from "./country.model";
 
 export class Currency {
-    digital: boolean;
-    active: boolean;
-    countries: Country[];
-    message: string;
-    plural: string;
-    name: string;
-    symbol: String;
+    Digital: boolean;
+    Active: boolean;
+    Countries: Country[];
+    Message: string;
+    Plural: string;
+    Name: string;
+    Symbol: String;
 
     constructor(digital: boolean, active: boolean, countries: Country[], message: string, plural: string, name: string, symbol: string){
-        this.digital = digital;
-        this.active = active;
-        this.countries = countries;
-        this.message = message;
-        this.plural = plural;
-        this.name = name;
-        this.symbol = symbol;
+        this.Digital = digital;
+        this.Active = active;
+        this.Countries = countries;
+        this.Message = message;
+        this.Plural = plural;
+        this.Name = name;
+        this.Symbol = symbol;
     }
 }

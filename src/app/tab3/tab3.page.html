@@ -11,18 +11,14 @@
     <ion-list-header>Default currencies</ion-list-header>
     <ion-item>
       <ion-label>Input currency</ion-label>
-      <ion-select [(ngModel)]="inputCurrency" (ngModelChange)="onOptionsChange()">
-        <ion-select-option value="EUR">Euro</ion-select-option>
-        <ion-select-option value="USD">Americal Dollar</ion-select-option>
-        <ion-select-option value="CZK">Czech Koruna</ion-select-option>
+      <ion-select [(ngModel)]="inputCurrency" [selectedText]="currencyDiplayMode == 'code' ? inputCurrency.code : inputCurrency.fullName" (ngModelChange)="onOptionsChange()" interface="action-sheet">
+        <ion-select-option *ngFor="let currency of currencies" [value]="{code: currency.Symbol, fullName: currency.Name}">{{ currencyDiplayMode == 'code' ? currency.Symbol : currency.Name }}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Desired currency</ion-label>
-      <ion-select [(ngModel)]="outputCurrency" (ngModelChange)="onOptionsChange()">
-        <ion-select-option value="EUR">Euro</ion-select-option>
-        <ion-select-option value="USD">Americal Dollar</ion-select-option>
-        <ion-select-option value="CZK">Czech Koruna</ion-select-option>
+      <ion-select [(ngModel)]="outputCurrency" [selectedText]="currencyDiplayMode == 'code' ? outputCurrency.code : outputCurrency.fullName" (ngModelChange)="onOptionsChange()" interface="action-sheet">
+        <ion-select-option *ngFor="let currency of currencies" [value]="{code: currency.Symbol, fullName: currency.Name}">{{ currencyDiplayMode == 'code' ? currency.Symbol : currency.Name }}</ion-select-option>
       </ion-select>
       </ion-item>
   </ion-list>

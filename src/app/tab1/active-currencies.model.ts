@@ -1,17 +1,17 @@
 import { Currency } from "../common/currency.model";
 
 export class ActiveCurrencies {
-    delay: number;
-    outcome: string;
-    currencyList: Currency[];
-    identity: string;
-    message: string;
+    Delay: number;
+    Outcome: string;
+    CurrencyList: Currency[];
+    Identity: string;
+    Message: string;
 
     counstructor(delay: number, outcome: string, currencyList: Currency[], identity: string, message: string){
-        this.delay = delay;
-        this.outcome = outcome;
-        this.currencyList = currencyList;
-        this.identity = identity;
-        this.message = message;
+        this.Delay = delay;
+        this.Outcome = outcome;
+        this.CurrencyList = currencyList;
+        this.Identity = identity;
+        this.Message = message;
     }
 }

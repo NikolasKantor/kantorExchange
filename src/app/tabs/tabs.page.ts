@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../storage/storage.service';
 import { Options } from '../tab3/options.model';
+import { ExchangeService } from '../exchange-api/exchange.service';
 
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss']
 })
-export class TabsPage {}
+export class TabsPage implements OnInit{
+  constructor(private storageService:StorageService, private exchangeService:ExchangeService){}
+
+  ngOnInit(){
+    console.log('tabs component initialized!');
+    this.storageService.loadOptions();
+    this.exchangeService.loadActiveCurrencies();
+  }
+}

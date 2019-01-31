@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Options } from '../tab3/options.model';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { CurrencyCode } from '../common/currecy-code.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,8 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 export class StorageService {
   retrievedOptions = new Subject<Options>();
   options: Options = {
-    input: "CZK",
-    output: "EUR",
+    input: new CurrencyCode('CZK', 'Czech koruna'),
+    output: new CurrencyCode('EUR', 'European Union euro'),
     displayMode: "fullName",
     rates: {
       bid: true,
@@ -30,6 +31,7 @@ export class StorageService {
       },
       error => console.error('error saving options', error)
     );
+    this.retrievedOptions.next(options);
   }
 
   loadOptions(){
@@ -45,7 +47,6 @@ export class StorageService {
   }
 
   getOptions(): Options{
-    this.loadOptions();
     return this.options;
   }
 

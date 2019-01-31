@@ -1,20 +1,46 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab One
+      Currency exchange
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-card class="welcome-card">
-      <ion-img src="/assets/shapes.svg"></ion-img>
+<ion-content>    
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-select [(ngModel)]="options.input" interface="action-sheet">
+            <ion-select-option *ngFor="let currency of currencies" [value]="currency.Symbol">{{ options.displayMode == 'code' ? currency.Symbol : currency.Name }}</ion-select-option>
+          </ion-select>
+        </ion-col>
+        <ion-col>
+          <ion-select [(ngModel)]="options.output" interface="action-sheet">
+            <ion-select-option *ngFor="let currency of currencies" [value]="currency.Symbol">{{ options.displayMode == 'code' ? currency.Symbol : currency.Name }}</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-card *ngIf="options.rates.bid">
       <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Ionic</ion-card-title>
+        <ion-card-subtitle>Bid</ion-card-subtitle>
+        <ion-card-title>title</ion-card-title>
       </ion-card-header>
-      <ion-card-content>
-        {{ options }}
-      </ion-card-content>
     </ion-card>
+
+    <ion-card *ngIf="options.rates.mid">
+      <ion-card-header>
+        <ion-card-subtitle>Mid</ion-card-subtitle>
+        <ion-card-title>title</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card *ngIf="options.rates.ask">
+      <ion-card-header>
+        <ion-card-subtitle>Ask</ion-card-subtitle>
+        <ion-card-title>title</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
 </ion-content>

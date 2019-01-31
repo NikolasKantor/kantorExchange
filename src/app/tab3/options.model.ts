@@ -1,6 +1,8 @@
+import { CurrencyCode } from "../common/currecy-code.model";
+
 export class Options{
-    input: string;
-    output: string;
+    input: CurrencyCode;
+    output: CurrencyCode;
     displayMode: string;
     rates: {
         bid: boolean;
@@ -8,7 +10,7 @@ export class Options{
         ask: boolean;
     }
 
-    constructor(input: string, output: string, displayMode: string, bidRate: boolean, midRate: boolean, askRate: boolean){
+    constructor(input: CurrencyCode, output: CurrencyCode, displayMode: string, bidRate: boolean, midRate: boolean, askRate: boolean){
         this.input = input;
         this.output = output;
         this.displayMode = displayMode;
