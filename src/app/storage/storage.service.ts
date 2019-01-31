@@ -36,7 +36,6 @@ export class StorageService {
   loadOptions(){
     this.nativeStorage.getItem('options').then(
       (options: Options) => {
-        console.log('loaded options');
         this.options = options;
         this.retrievedOptions.next(options);
         this.exchangeService.loadExchangeRate(options.input.code, options.output.code);

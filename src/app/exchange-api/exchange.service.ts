@@ -19,7 +19,6 @@ export class ExchangeService {
   constructor(private httpClient:HttpClient) { }
 
   loadExchangeRate(inputCurrencyCode: string, outputCurrencyCode: string){
-    console.log('loadExchangeRates');
     this.httpClient.get('https://globalcurrencies.xignite.com/xGlobalCurrencies.json/GetRealTimeRate?Symbol=' + inputCurrencyCode + outputCurrencyCode + '&_token=' + this.token).subscribe(
       (currencyRates: CurrencyRate) => {
         this.exchangeRates = currencyRates;
@@ -32,7 +31,6 @@ export class ExchangeService {
   loadActiveCurrencies(){
     this.httpClient.get('https://globalcurrencies.xignite.com/xGlobalCurrencies.json/ListActiveCurrencies?&_token=' + this.token).subscribe(
     (activeCurrencies: ActiveCurrencies) => {
-        console.log("getActiveCurrencies data, ", activeCurrencies),
         this.activeCurrencies = activeCurrencies;
         this.activeCurrenciesUpdated.next(activeCurrencies);
       },

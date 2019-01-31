@@ -12,7 +12,6 @@ export class TabsPage implements OnInit{
   constructor(private storageService:StorageService, private exchangeService:ExchangeService){}
 
   ngOnInit(){
-    console.log('tabs component initialized!');
     this.storageService.loadOptions();
     this.exchangeService.loadActiveCurrencies();
   }

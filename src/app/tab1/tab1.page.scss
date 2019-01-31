@@ -2,4 +2,14 @@
   max-height: 35vh;
   overflow: hidden;
 }
-
+.card-currency-code{
+  --color: var(--ion-color-step-550,#737373);
+  font-size: 14px;
+}
+.card-ammount{
+  color: #3880ff;
+}
+.input-amount{
+  --highlight-color-valid: var(--ion-color-primary,#3880ff) !important;
+  --highlight-color-invalid: var(--ion-color-primary,#3880ff) !important;
+}
