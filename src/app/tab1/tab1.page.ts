@@ -5,6 +5,9 @@ import { ExchangeService } from '../exchange-api/exchange.service';
 import { ActiveCurrencies } from './active-currencies.model';
 import { Subscription } from 'rxjs';
 import { Currency } from '../common/currency.model';
+import { CurrencyCode } from '../common/currecy-code.model';
+import { Rates } from '../common/rates.model';
+import { CurrencyRate } from '../common/currency-rate.model';
 
 @Component({
   selector: 'app-tab1',
@@ -14,6 +17,8 @@ import { Currency } from '../common/currency.model';
 export class Tab1Page implements OnInit, OnDestroy{
   options: Options;
   currencies: Currency[];
+  ammount: number;
+  rates: Rates = new Rates(0, 0, 0);
 
   activeCurrenciesSubscription: Subscription;
   optionsSubscription: Subscription;
@@ -43,6 +48,32 @@ export class Tab1Page implements OnInit, OnDestroy{
       }/*,
       error => console.error('something doesnt work')*/
     );
+
+    let exchangeRate: CurrencyRate = this.exchangeService.getExchangeRates();
+    if(exchangeRate != undefined){
+      this.rates = new Rates(exchangeRate.Bid, exchangeRate.Mid, exchangeRate.Ask);
+    }
+    else{
+      this.exchangeService.loadExchangeRate(this.options.input.code, this.options.output.code);
+    }
+    this.exchangeService.exchangeRateLoaded.subscribe(
+      (exchangeRates: CurrencyRate) => {
+        if(exchangeRates != undefined){
+          console.log("exrs: ",exchangeRates);
+          this.rates = new Rates(exchangeRates.Bid, exchangeRates.Mid, exchangeRates.Ask);
+        }
+      }
+    )
+  }
+
+  onCurrencyChange(){
+    this.exchangeService.loadExchangeRate(this.options.input.code, this.options.output.code);
+  }
+
+  onSwapClick(){
+    let inputCurrencyCode:CurrencyCode = this.options.input;
+    this.options.input = this.options.output;
+    this.options.output = inputCurrencyCode;
   }
   
   ngOnDestroy(){

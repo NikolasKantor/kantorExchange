@@ -7,40 +7,48 @@
 </ion-header>
 
 <ion-content>    
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-select [(ngModel)]="options.input" interface="action-sheet">
-            <ion-select-option *ngFor="let currency of currencies" [value]="currency.Symbol">{{ options.displayMode == 'code' ? currency.Symbol : currency.Name }}</ion-select-option>
-          </ion-select>
-        </ion-col>
-        <ion-col>
-          <ion-select [(ngModel)]="options.output" interface="action-sheet">
-            <ion-select-option *ngFor="let currency of currencies" [value]="currency.Symbol">{{ options.displayMode == 'code' ? currency.Symbol : currency.Name }}</ion-select-option>
-          </ion-select>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-card *ngIf="options.rates.bid">
-      <ion-card-header>
-        <ion-card-subtitle>Bid</ion-card-subtitle>
-        <ion-card-title>title</ion-card-title>
-      </ion-card-header>
-    </ion-card>
-
-    <ion-card *ngIf="options.rates.mid">
-      <ion-card-header>
-        <ion-card-subtitle>Mid</ion-card-subtitle>
-        <ion-card-title>title</ion-card-title>
-      </ion-card-header>
-    </ion-card>
-
-    <ion-card *ngIf="options.rates.ask">
-      <ion-card-header>
-        <ion-card-subtitle>Ask</ion-card-subtitle>
-        <ion-card-title>title</ion-card-title>
-      </ion-card-header>
-    </ion-card>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col [size]="options.displayMode == 'code' ? 5 : 12">
+        <ion-select [(ngModel)]="options.input" (ionChange)="onCurrencyChange()" [selectedText]="options.displayMode == 'code' ? options.input.code : options.input.fullName" interface="action-sheet">
+          <ion-select-option *ngFor="let currency of currencies" [value]="{code: currency.Symbol, fullName: currency.Name}">{{ options.displayMode == 'code' ? currency.Symbol : currency.Name }}</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col [size]="options.displayMode == 'code' ? 2 : 12" text-center align-self-center>
+        <ion-icon name="swap" (click)="onSwapClick()"></ion-icon>
+      </ion-col>
+      <ion-col [size]="options.displayMode == 'code' ? 5 : 12">
+        <ion-select [(ngModel)]="options.output" (ionChange)="onCurrencyChange()" [selectedText]="options.displayMode == 'code' ? options.output.code : options.output.fullName" interface="action-sheet">
+          <ion-select-option *ngFor="let currency of currencies" [value]="{code: currency.Symbol, fullName: currency.Name}">{{ options.displayMode == 'code' ? currency.Symbol : currency.Name }}</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+          <ion-input [(ngModel)]="amount" type="number" placeholder="Enter Amount" autofocus="true" inputmode="numberic" min="0"></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+    
+  <ion-card *ngIf="options.rates.bid">
+    <ion-card-header>
+      <ion-card-subtitle>Bid</ion-card-subtitle>
+      <ion-card-title>{{ (amount >= 0 && rates.bid >= 0 ? rates.bid * amount : 0) | number:'1.0-2'}}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-card *ngIf="options.rates.mid">
+    <ion-card-header>
+      <ion-card-subtitle>Mid</ion-card-subtitle>
+      <ion-card-title>{{ (amount >= 0 && rates.mid >= 0 ? rates.mid * amount : 0) | number:'1.0-2'}}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-card *ngIf="options.rates.ask">
+    <ion-card-header>
+      <ion-card-subtitle>Ask</ion-card-subtitle>
+      <ion-card-title>{{ (amount >= 0 && rates.ask >= 0 ? rates.ask * amount : 0) | number:'1.0-2'}}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
 </ion-content>
