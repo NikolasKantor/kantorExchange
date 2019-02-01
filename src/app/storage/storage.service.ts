@@ -30,7 +30,6 @@ export class StorageService {
       },
       error => console.error('error saving options', error)
     );
-    this.retrievedOptions.next(options);
   }
 
   loadOptions(){

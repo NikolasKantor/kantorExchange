@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../storage/storage.service';
-import { Options } from '../tab3/options.model';
 import { ExchangeService } from '../exchange-api/exchange.service';
 
 @Component({
