@@ -17,8 +17,9 @@ import { CurrencyRate } from '../common/currency-rate.model';
 export class Tab1Page implements OnInit, OnDestroy{
   options: Options;
   currencies: Currency[];
-  ammount: number;
+  amount: number;
   rates: Rates = new Rates(0, 0, 0);
+
 
   activeCurrenciesSubscription: Subscription;
   optionsSubscription: Subscription;
@@ -27,12 +28,10 @@ export class Tab1Page implements OnInit, OnDestroy{
 
   ngOnInit(){
     var activeCurrencies: ActiveCurrencies = this.exchangeService.getActiveCurrencies();
-    console.log('current active currencies: ',activeCurrencies);
     if(activeCurrencies != undefined)
       this.currencies = activeCurrencies.CurrencyList;
     this.activeCurrenciesSubscription = this.exchangeService.activeCurrenciesUpdated.subscribe(
       (activeCurrencies: ActiveCurrencies) => {
-        console.log('received updated currencies: ',activeCurrencies);
         if(activeCurrencies != undefined){
           this.currencies = activeCurrencies.CurrencyList;
         }
@@ -43,7 +42,6 @@ export class Tab1Page implements OnInit, OnDestroy{
     this.options = this.storageService.getOptions();
     this.optionsSubscription = this.storageService.retrievedOptions.subscribe(
       (options: Options) => {
-        console.log("tab1 received new options: ", options);
         this.options = options;
       }/*,
       error => console.error('something doesnt work')*/

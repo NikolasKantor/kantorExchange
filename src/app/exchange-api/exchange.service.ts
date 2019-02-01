@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ActiveCurrencies } from '../tab1/active-currencies.model';
 import { Subject } from 'rxjs/internal/Subject';
 import { CurrencyRate } from '../common/currency-rate.model';
+import { HTTP } from '@ionic-native/http/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -16,26 +16,28 @@ export class ExchangeService {
   activeCurrenciesUpdated = new Subject<ActiveCurrencies>();
   exchangeRateLoaded = new Subject<CurrencyRate>();
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private http:HTTP) { }
 
   loadExchangeRate(inputCurrencyCode: string, outputCurrencyCode: string){
-    this.httpClient.get('https://globalcurrencies.xignite.com/xGlobalCurrencies.json/GetRealTimeRate?Symbol=' + inputCurrencyCode + outputCurrencyCode + '&_token=' + this.token).subscribe(
-      (currencyRates: CurrencyRate) => {
-        this.exchangeRates = currencyRates;
-        this.exchangeRateLoaded.next(currencyRates);
-      },
-      error => {console.log("getRealTimeRate error, ", error)}
-    );
+    this.http.get('https://globalcurrencies.xignite.com/xGlobalCurrencies.json/GetRealTimeRate?Symbol=' + inputCurrencyCode + outputCurrencyCode + '&_token=' + this.token, {}, {})
+      .then(response => {
+          let currencyRate:CurrencyRate = <CurrencyRate>JSON.parse(response.data);
+          this.exchangeRates = currencyRate;
+          this.exchangeRateLoaded.next(currencyRate);
+      }).catch(error => {
+        console.log("getRealTimeRate error, ", error)
+      });
   }
 
   loadActiveCurrencies(){
-    this.httpClient.get('https://globalcurrencies.xignite.com/xGlobalCurrencies.json/ListActiveCurrencies?&_token=' + this.token).subscribe(
-    (activeCurrencies: ActiveCurrencies) => {
-        this.activeCurrencies = activeCurrencies;
-        this.activeCurrenciesUpdated.next(activeCurrencies);
-      },
-      error => {console.log("getActiveCurrencies error, ", error)}
-    );
+    this.http.get('https://globalcurrencies.xignite.com/xGlobalCurrencies.json/ListActiveCurrencies?&_token=' + this.token, {}, {})
+    .then(response => {     
+        let activeCurrecies:ActiveCurrencies = <ActiveCurrencies>JSON.parse(response.data);
+        this.activeCurrencies = activeCurrecies;
+        this.activeCurrenciesUpdated.next(activeCurrecies);
+      }).catch( error => {
+        console.log("getActiveCurrencies error, ", error)
+      });
   }
 
   getActiveCurrencies(){
@@ -45,6 +47,5 @@ export class ExchangeService {
   getExchangeRates(){
     return this.exchangeRates;
   }
-
 
 }

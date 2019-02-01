@@ -2,3 +2,7 @@
     color: #737373;
     font-size: 14px;
 }
+.input-apikey{
+    --highlight-color-valid: var(--ion-color-primary,#3880ff) !important;
+    --highlight-color-invalid: var(--ion-color-primary,#3880ff) !important;
+  }
