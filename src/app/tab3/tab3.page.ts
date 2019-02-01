@@ -46,8 +46,8 @@ export class Tab3Page implements OnInit, OnDestroy{
   }
 
   updateOptionsTab(options: Options){
-    this.inputCurrency = options.input;
-    this.outputCurrency = options.output;
+    this.inputCurrency = options.input != undefined ? options.input : this.inputCurrency;
+    this.outputCurrency = options.output != undefined ? options.output : this.outputCurrency;
     this.currencyDiplayMode = options.displayMode;
     this.bidRate = options.rates.bid;
     this.midRate = options.rates.mid;

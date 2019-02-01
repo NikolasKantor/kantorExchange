@@ -30,7 +30,7 @@ export class StorageService {
       },
       error => console.error('error saving options', error)
     );
-    this.retrievedOptions.next(options);
+    this.retrievedOptions.next(new Options(undefined, undefined, options.displayMode, options.rates.bid, options.rates.mid, options.rates.ask));
   }
 
   loadOptions(){
