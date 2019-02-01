@@ -42,6 +42,10 @@ export class Tab1Page implements OnInit, OnDestroy{
     this.options = this.storageService.getOptions();
     this.optionsSubscription = this.storageService.retrievedOptions.subscribe(
       (options: Options) => {
+        console.log('options changed: ',options);
+        console.log('is input undefined?: ',options.input == undefined)
+        console.log('is displayMode undefined?: ',options.displayMode == undefined)
+
         this.options.input = options.input != undefined ? options.input : this.options.input;
         this.options.output = options.output != undefined ? options.output : this.options.output;
         this.options.displayMode = options.displayMode;

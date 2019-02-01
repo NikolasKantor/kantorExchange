@@ -26,7 +26,7 @@ export class StorageService {
   saveOptions(options: Options){
     this.nativeStorage.setItem('options', options).then(
       () => {
-        this.retrievedOptions.next(options);
+        console.log('options were successfully saved');
       },
       error => console.error('error saving options', error)
     );
