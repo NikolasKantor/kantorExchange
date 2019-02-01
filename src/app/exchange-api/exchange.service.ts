@@ -8,7 +8,7 @@ import { HTTP } from '@ionic-native/http/ngx';
   providedIn: 'root'
 })
 export class ExchangeService {
-  token:string = 'D8BF6BB698C443EB975EE04AEC58BAB6';
+  token:string = '543571DFFBF641E78C1B2A26659A1FFF';
 
   activeCurrencies: ActiveCurrencies;
   exchangeRates: CurrencyRate;

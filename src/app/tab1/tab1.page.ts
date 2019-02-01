@@ -39,10 +39,10 @@ export class Tab1Page implements OnInit, OnDestroy{
       error => console.error('something doesnt work')*/
     );
 
-    this.options = this.storageService.getOptions();
+    this.updateOptions(this.storageService.getOptions());
     this.optionsSubscription = this.storageService.retrievedOptions.subscribe(
       (options: Options) => {
-        this.options = options;
+        this.updateOptions(options);
       }/*,
       error => console.error('something doesnt work')*/
     );
@@ -62,6 +62,11 @@ export class Tab1Page implements OnInit, OnDestroy{
         }
       }
     )
+  }
+
+  updateOptions(options: Options){
+    this.options.displayMode = options.displayMode;
+    this.options.rates = options.rates;
   }
 
   onCurrencyChange(){
